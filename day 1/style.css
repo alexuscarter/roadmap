@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #e51b6f;
+  --secondary-color: #ffd4e6;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--primary-color);
+}
+
+.dot {
+  width: 6rem;
+  height: 6rem;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transition: transform 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}

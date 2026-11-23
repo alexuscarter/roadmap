@@ -259,12 +259,40 @@ h2 {
 .email {
   gap: var(--space-20);
   margin-top: var(--space-8);
+  display: flex;
+  align-items: center;
+}
+
+.copy-email {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-4);
 }
 
 .email-span {
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
   color: var(--color-text-muted);
+}
+
+/* hidden but still takes up space, so nothing jumps when it appears */
+.copied {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  padding-inline: var(--space-8);
+  border-radius: var(--radius-sm);
+}
+
+.copied.is-visible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .hero-image {

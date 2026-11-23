@@ -1,27 +1,326 @@
+/* ==========================================================
+   Day 0 design system variables
+   Source: Figma "Design system" page (light mode).
+   Use these with var(), e.g. color: var(--color-text);
+   ========================================================== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 :root {
-  --primary-color: #e51b6f;
-  --secondary-color: #ffd4e6;
+  /* ---------- Colors ---------- */
+  --color-bg: #f6f3ee;
+  --color-surface: #ffffff;
+  --color-surface-muted: #efeae2;
+  --color-border: #ddd6cb;
+
+  --color-text: #17161a;
+  --color-text-muted: #5e5a63;
+
+  --color-accent: #4b3bff;
+  --color-on-accent: #ffffff;
+  --color-accent-soft: #ece9ff;
+
+  --color-success: #1f7a4d;
+  --color-success-soft: #dff3e8;
+  --color-danger: #c62f3a;
+  --color-danger-soft: #fbe4e6;
+
+  /* ---------- Font ---------- */
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---------- Type scale (size / line height / letter spacing) ----------
+     label/16 and label/14 use the body-16 and body-14 sizes
+     with --weight-semibold. */
+  --text-display: 3rem; /* 48px */
+  --leading-display: 3.5rem; /* 56px */
+  --tracking-display: -0.02em;
+
+  --text-heading-32: 2rem;
+  --leading-heading-32: 2.5rem;
+  --tracking-heading-32: -0.01em;
+
+  --text-heading-24: 1.5rem;
+  --leading-heading-24: 2rem;
+  --tracking-heading-24: -0.005em;
+
+  --text-heading-20: 1.25rem;
+  --leading-heading-20: 1.75rem;
+
+  --text-body-18: 1.125rem;
+  --leading-body-18: 1.75rem;
+
+  --text-body-16: 1rem;
+  --leading-body-16: 1.5rem;
+
+  --text-body-14: 0.875rem;
+  --leading-body-14: 1.25rem;
+
+  --text-caption: 0.75rem; /* 12px, Medium, set in uppercase in the HTML */
+  --leading-caption: 1rem;
+  --tracking-caption: 0.02em;
+
+  /* ---------- Spacing ---------- */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-20: 1.25rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+  --space-96: 6rem;
+
+  /* ---------- Radius ---------- */
+  --radius-sm: 8px;
+  --radius-md: 12px; /* buttons */
+  --radius-lg: 20px; /* photo */
+  --radius-pill: 999px;
+
+  /* ---------- Borders and focus ---------- */
+  --border-width: 1px;
+  --focus-ring: 2px solid var(--color-accent);
+  --focus-offset: 2px;
+
+  /* ---------- Day 0 layout ---------- */
+  --page-padding: 80px; /* 24px on mobile */
+  --page-padding-mobile: 24px;
+  --hero-gap: 80px;
+  --photo-width: 400px;
+  --photo-height: 480px;
+
+  /* var() does not work inside media queries, so write the
+     breakpoint as a number: @media (max-width: 768px) { ... } */
 }
 
 body {
-  margin: 0;
-  height: 100vh;
-  background: var(--primary-color);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
+  font-weight: var(--weight-regular);
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
-.dot {
-  width: 6rem;
-  height: 6rem;
-  background: var(--secondary-color);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--weight-bold);
+}
+
+h2 {
+  font-size: var(--text-heading-24);
+  line-height: var(--leading-heading-24);
+  letter-spacing: var(--tracking-heading-24);
+  font-weight: var(--weight-semibold);
+}
+
+/* layout: 1280 design = 70rem content + 80px padding each side (content-box) */
+.container {
+  max-width: 70rem;
+  padding-inline: var(--page-padding);
+  margin: 0 auto;
+}
+
+.nav-container {
+  padding-block: var(--space-32);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo a {
+  font-weight: var(--weight-semibold);
+}
+
+.button {
+  font-family: inherit;
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-16);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-accent-soft);
+}
+
+.button:focus-visible,
+.links a:focus-visible,
+.nav-logo a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: var(--hero-gap);
+  padding-block: var(--space-64);
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-media {
+  flex: none;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-12);
+}
+
+.eyebrow span {
+  text-transform: uppercase;
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+  color: var(--color-text-muted);
+}
+
+.hero-text h2 {
+  color: var(--color-accent);
+}
+
+.hero-text > p {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  color: var(--color-text-muted);
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.link,
+.email,
+.hero-image {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  justify-content: space-between;
+  padding-bottom: var(--space-20);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.link-label {
+  font-weight: var(--weight-semibold);
+}
+
+.link a {
+  color: var(--color-text-muted);
+}
+
+.link a:hover {
+  background-color: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.email {
+  gap: var(--space-20);
+  margin-top: var(--space-8);
+}
+
+.email-span {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-text-muted);
+}
+
+.hero-image {
+  flex-direction: column;
+  justify-content: center;
+  height: var(--photo-height);
+  width: var(--photo-width);
+  background-color: var(--color-accent-soft);
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-lg);
+  color: var(--color-accent);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding-block: var(--space-32);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-text-muted);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+/* media queries can't use var(), so the breakpoint is a literal 768px */
+@media (max-width: 768px) {
+  .container {
+    padding-inline: var(--page-padding-mobile);
+  }
+
+  h1 {
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+    letter-spacing: var(--tracking-heading-32);
+  }
+
+  .hero-container {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: var(--space-32);
+    padding-block: var(--space-32);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .email {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
 }

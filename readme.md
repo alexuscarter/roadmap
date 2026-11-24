@@ -1,41 +1,33 @@
-# 18 Days of Creative Development
+# Front-End Roadmap: 46 Projects
 
-My daily mini-projects learning creative front-end development.
+One small project a day, hand-coded in HTML, CSS and JavaScript, then TypeScript, React and Next.js. I design each project in Figma first, then build it from scratch to production standards: semantic, accessible, responsive and readable.
 
-# Day 1 Project - Mouse follower
+**Schedule:** Day 0 to Day 46, Monday to Saturday (Nov 22, 2026 to Jan 16, 2027).
 
-What I learned - mousemove, transform.
+## Phases
 
-# Day 2 Project -
+| Days | Phase | Focus |
+| --- | --- | --- |
+| 0–12 | Foundations | Semantic HTML, CSS layout, DOM, events, state |
+| 13–18 | Async and data | fetch, async/await, error handling, APIs |
+| 19–29 | Git and GSAP motion | Branching workflow, GSAP, ScrollTrigger |
+| 30–46 | TypeScript, React, Next.js | Typed components, React state, Next.js apps |
 
-# Day 3 Project -
+## Projects
 
-# Day 4 Project -
+| Day | Project | What I practiced | Folder |
+| --- | --- | --- | --- |
+| 0 | About-me page | Time-based greeting, Clipboard API, `setTimeout`, dynamic footer year | [day-00](day-00) |
+| 1 | Profile card with Follow button | Flexbox, design tokens, state + `render()` pattern, `classList.toggle`, `aria-pressed` | [day-01](day-01) |
+| 2 | Responsive pricing page | CSS grid, media queries, monthly/yearly toggle driven by data | coming soon |
 
-# Day 5 Project -
+## How each project is built
 
-# Day 6 Project -
+1. Design it in Figma (desktop 1280, mobile 375) using a shared design system.
+2. Build it with CSS custom properties for color, type, spacing and radius.
+3. Check it: keyboard and focus states, no horizontal scroll at 375px, no console errors.
+4. Commit in small steps and get a code review.
 
-# Day 7 Project -
+## Run locally
 
-# Day 8 Project -
-
-# Day 9 Project -
-
-# Day 10 Project -
-
-# Day 11 Project -
-
-# Day 12 Project -
-
-# Day 13 Project -
-
-# Day 14 Project -
-
-# Day 15 Project -
-
-# Day 16 Project -
-
-# Day 17 Project -
-
-# Day 18 Project -
+No build step. Open any `day-XX/index.html` in a browser.

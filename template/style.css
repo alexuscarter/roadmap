@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ---------- Colors ---------- */
+  --color-bg: #f6f3ee;
+  --color-surface: #ffffff;
+  --color-surface-muted: #efeae2;
+  --color-border: #ddd6cb;
+
+  --color-text: #17161a;
+  --color-text-muted: #5e5a63;
+
+  --color-accent: #4b3bff;
+  --color-on-accent: #ffffff;
+  --color-accent-soft: #ece9ff;
+
+  --color-success: #1f7a4d;
+  --color-success-soft: #dff3e8;
+  --color-danger: #c62f3a;
+  --color-danger-soft: #fbe4e6;
+
+  /* ---------- Font ---------- */
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---------- Type scale (size / line height / letter spacing) ----------
+     label/16 and label/14 use the body-16 and body-14 sizes
+     with --weight-semibold. */
+  --text-display: 3rem; /* 48px */
+  --leading-display: 3.5rem; /* 56px */
+  --tracking-display: -0.02em;
+
+  --text-heading-32: 2rem;
+  --leading-heading-32: 2.5rem;
+  --tracking-heading-32: -0.01em;
+
+  --text-heading-24: 1.5rem;
+  --leading-heading-24: 2rem;
+  --tracking-heading-24: -0.005em;
+
+  --text-heading-20: 1.25rem;
+  --leading-heading-20: 1.75rem;
+
+  --text-body-18: 1.125rem;
+  --leading-body-18: 1.75rem;
+
+  --text-body-16: 1rem;
+  --leading-body-16: 1.5rem;
+
+  --text-body-14: 0.875rem;
+  --leading-body-14: 1.25rem;
+
+  --text-caption: 0.75rem; /* 12px, Medium, uppercase */
+  --leading-caption: 1rem;
+  --tracking-caption: 0.02em;
+
+  /* ---------- Spacing ---------- */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+  --space-96: 6rem;
+
+  /* ---------- Radius ---------- */
+  --radius-sm: 8px;
+  --radius-md: 12px; /* buttons */
+  --radius-lg: 20px; /* cards */
+  --radius-pill: 999px;
+
+  /* ---------- Borders and focus ---------- */
+  --border-width: 1px;
+  --focus-ring: 2px solid var(--color-accent);
+  --focus-offset: 2px;
+
+  /* ---------- Page layout ---------- */
+  --page-padding: 80px;
+  --page-padding-mobile: 24px;
+
+  /* var() does not work inside media queries, so write the
+     breakpoint as a number: @media (max-width: 768px) { ... } */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
+  font-weight: var(--weight-regular);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Project styles go below ---------- */

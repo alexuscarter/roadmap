@@ -4,7 +4,7 @@ const followBtn = document.querySelector(".follow-btn");
 const followerCount = document.querySelector(".follower-count");
 
 let followers = 128;
-let isFollowing = true;
+let isFollowing = false;
 
 const render = () => {
   followerCount.textContent = followers;

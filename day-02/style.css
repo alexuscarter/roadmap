@@ -167,6 +167,11 @@ main {
 .plan-type {
   font-size: var(--text-body-16);
   font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.plan-type.is-active {
+  color: var(--color-text);
 }
 
 .billing-toggle {
@@ -265,6 +270,10 @@ main {
   text-transform: uppercase;
   color: var(--color-accent);
   white-space: nowrap; /* keep "MOST POPULAR" on one line */
+}
+
+.hidden {
+  display: none;
 }
 
 .card-description {

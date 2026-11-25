@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Day 03 · Contact form</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <p class="eyebrow">Contact</p>
+        <h1>Start a project with us</h1>
+        <p class="intro">
+          Tell us a little about what you need. We reply within two working
+          days.
+        </p>
+      </header>
+
+      <div class="form-card">
+        <!-- novalidate turns off the browser's own error bubbles,
+             so your JavaScript shows the messages instead -->
+        <form class="contact-form" id="contact-form" novalidate>
+          <!-- Each field: label (for = the input's id), the control,
+               then an empty error <p> your JS fills in.
+               aria-describedby links the control to its error and hint,
+               so screen readers read them with the field. -->
+          <div class="field">
+            <label class="field-label" for="name">
+              Name <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              class="field-control"
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Alex Morgan"
+              required
+              aria-describedby="name-error"
+            />
+            <p class="field-error" id="name-error"></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="email">
+              Email <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              class="field-control"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="alex@studio.com"
+              required
+              aria-describedby="email-hint email-error"
+            />
+            <p class="field-hint" id="email-hint">
+              We'll only use this to reply.
+            </p>
+            <p class="field-error" id="email-error"></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="topic">
+              Topic <span class="required" aria-hidden="true">*</span>
+            </label>
+            <select
+              class="field-control"
+              id="topic"
+              name="topic"
+              required
+              aria-describedby="topic-error"
+            >
+              <option value="">Choose a topic</option>
+              <option value="new-project">New project</option>
+              <option value="website">Website</option>
+              <option value="branding">Branding</option>
+              <option value="other">Something else</option>
+            </select>
+            <p class="field-error" id="topic-error"></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="message">
+              Message <span class="required" aria-hidden="true">*</span>
+            </label>
+            <!-- no maxlength on purpose: the counter and your JS
+                 handle the 300 limit, so "over the limit" can happen -->
+            <textarea
+              class="field-control"
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Tell us about your project…"
+              required
+              aria-describedby="message-error message-count"
+              data-max="300"
+            ></textarea>
+            <div class="field-meta">
+              <p class="field-error" id="message-error"></p>
+              <p class="field-counter" id="message-count">0 / 300</p>
+            </div>
+          </div>
+
+          <button class="button" type="submit">Send message</button>
+          <p class="required-note">* Required</p>
+        </form>
+
+        <!-- shown after a valid submit; role="status" makes screen
+             readers announce it when it appears -->
+        <div class="form-success" id="form-success" role="status" hidden>
+          <span class="form-success-icon" aria-hidden="true">✓</span>
+          <div>
+            <p class="form-success-title">Message sent</p>
+            <p class="form-success-text" id="form-success-text"></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

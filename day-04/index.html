@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Day 04 · Tip splitter</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <p class="eyebrow">Tip splitter</p>
+        <h1>Split the bill</h1>
+        <p class="intro">
+          Enter the bill, pick a tip and say how many people are paying.
+          We'll do the math.
+        </p>
+      </header>
+
+      <div class="calculator">
+        <div class="calculator-form">
+          <!-- Bill: the $ is decoration, the label says what it is -->
+          <div class="field">
+            <label class="field-label" for="bill">Bill</label>
+            <div class="input-wrap">
+              <span class="input-prefix" aria-hidden="true">$</span>
+              <input
+                class="field-control"
+                id="bill"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <!-- fieldset + legend group the tip choices under one name.
+               Each button carries its percent in data-tip.
+               aria-pressed="true" marks the selected one (and styles it). -->
+          <fieldset class="tip-group">
+            <legend class="field-label">Select tip</legend>
+            <div class="tip-grid">
+              <button class="tip-button" type="button" data-tip="10" aria-pressed="false">
+                10%
+              </button>
+              <button class="tip-button" type="button" data-tip="15" aria-pressed="true">
+                15%
+              </button>
+              <button class="tip-button" type="button" data-tip="20" aria-pressed="false">
+                20%
+              </button>
+              <input
+                class="field-control tip-custom"
+                id="custom-tip"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                placeholder="Custom"
+                aria-label="Custom tip percentage"
+              />
+            </div>
+          </fieldset>
+
+          <!-- People: the error sits on the label row, like the design -->
+          <div class="field">
+            <div class="label-row">
+              <label class="field-label" for="people">Number of people</label>
+              <p class="field-error" id="people-error"></p>
+            </div>
+            <input
+              class="field-control"
+              id="people"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              step="1"
+              placeholder="1"
+              aria-describedby="people-error"
+            />
+          </div>
+        </div>
+
+        <!-- aria-live="polite": screen readers read the new amounts
+             after they change, without interrupting typing -->
+        <section class="result" aria-label="Result" aria-live="polite">
+          <dl class="result-rows">
+            <div class="result-row">
+              <dt>
+                <span class="result-title">Tip</span>
+                <span class="result-per">per person</span>
+              </dt>
+              <dd class="result-amount" id="tip-amount">$0.00</dd>
+            </div>
+            <div class="result-row">
+              <dt>
+                <span class="result-title">Total</span>
+                <span class="result-per">per person</span>
+              </dt>
+              <dd class="result-amount" id="total-amount">$0.00</dd>
+            </div>
+          </dl>
+
+          <!-- starts disabled: your JS enables it once there's input -->
+          <button class="button-reset" id="reset-button" type="button" disabled>
+            Reset
+          </button>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

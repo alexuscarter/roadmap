@@ -1,0 +1,447 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ---------- Colors ---------- */
+  --color-bg: #f6f3ee;
+  --color-surface: #ffffff;
+  --color-surface-muted: #efeae2;
+  --color-border: #ddd6cb;
+
+  --color-text: #17161a;
+  --color-text-muted: #5e5a63;
+
+  --color-accent: #4b3bff;
+  --color-on-accent: #ffffff;
+  --color-accent-soft: #ece9ff;
+
+  --color-success: #1f7a4d;
+  --color-success-soft: #dff3e8;
+  --color-danger: #c62f3a;
+  --color-danger-soft: #fbe4e6;
+
+  /* ---------- Font ---------- */
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---------- Type scale (size / line height / letter spacing) ----------
+     label/16 and label/14 use the body-16 and body-14 sizes
+     with --weight-semibold. */
+  --text-display: 3rem; /* 48px */
+  --leading-display: 3.5rem; /* 56px */
+  --tracking-display: -0.02em;
+
+  --text-heading-32: 2rem;
+  --leading-heading-32: 2.5rem;
+  --tracking-heading-32: -0.01em;
+
+  --text-heading-24: 1.5rem;
+  --leading-heading-24: 2rem;
+  --tracking-heading-24: -0.005em;
+
+  --text-heading-20: 1.25rem;
+  --leading-heading-20: 1.75rem;
+
+  --text-body-18: 1.125rem;
+  --leading-body-18: 1.75rem;
+
+  --text-body-16: 1rem;
+  --leading-body-16: 1.5rem;
+
+  --text-body-14: 0.875rem;
+  --leading-body-14: 1.25rem;
+
+  --text-caption: 0.75rem; /* 12px, Medium, uppercase */
+  --leading-caption: 1rem;
+  --tracking-caption: 0.02em;
+
+  /* ---------- Spacing ---------- */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+  --space-96: 6rem;
+
+  /* ---------- Radius ---------- */
+  --radius-sm: 8px;
+  --radius-md: 12px; /* buttons */
+  --radius-lg: 20px; /* cards */
+  --radius-pill: 999px;
+
+  /* ---------- Borders and focus ---------- */
+  --border-width: 1px;
+  --focus-ring: 2px solid var(--color-accent);
+  --focus-offset: 2px;
+
+  /* ---------- Page layout ---------- */
+  --page-padding: 80px;
+  --page-padding-mobile: 24px;
+
+  /* var() does not work inside media queries, so write the
+     breakpoint as a number: @media (max-width: 768px) { ... } */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
+  font-weight: var(--weight-regular);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Project styles go below ---------- */
+
+/* page: 96px top and bottom on desktop, 48 on phones */
+.page {
+  padding: var(--space-96) var(--page-padding-mobile);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-48);
+}
+
+.page-header {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.page-header h1 {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--weight-bold);
+}
+
+.intro {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  color: var(--color-text-muted);
+}
+
+/* the white card: form on the left, result on the right */
+.calculator {
+  width: 100%;
+  max-width: 880px;
+  display: flex;
+  gap: var(--space-32);
+  padding: var(--space-32);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* takes the leftover width and is allowed to shrink */
+.calculator-form {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.field-label {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--weight-semibold);
+}
+
+/* label on the left, error on the right */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-16);
+}
+
+.field-error {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--weight-medium);
+  color: var(--color-danger);
+}
+
+/* an empty error takes no space: your JS only sets textContent */
+.field-error:empty {
+  display: none;
+}
+
+/* numbers sit on the right, like a receipt */
+.field-control {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-12) var(--space-16);
+  font: inherit; /* form controls don't inherit fonts by default */
+  font-weight: var(--weight-medium);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  appearance: textfield; /* hides the number spinners in Firefox */
+}
+
+/* hides the number spinners in Chrome and Safari */
+.field-control::-webkit-inner-spin-button,
+.field-control::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.field-control::placeholder {
+  color: var(--color-text-muted);
+  font-weight: var(--weight-regular);
+}
+
+.field-control:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 1px var(--color-accent),
+    0 0 0 4px var(--color-accent-soft);
+}
+
+/* ERROR STATE: your JS sets aria-invalid="true" on the input */
+.field-control[aria-invalid="true"] {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 1px var(--color-danger);
+}
+
+/* the $ sits inside the input, on the left */
+.input-wrap {
+  position: relative; /* the prefix is positioned from here */
+}
+
+.input-prefix {
+  position: absolute;
+  left: var(--space-16);
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  pointer-events: none; /* clicks go through to the input */
+}
+
+.input-wrap .field-control {
+  padding-left: var(--space-32);
+}
+
+/* fieldsets come with a border, padding and margin by default */
+.tip-group {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* legends ignore flex gap in some browsers, so it gets a margin too */
+.tip-group legend {
+  margin-bottom: var(--space-8);
+}
+
+/* two columns, two rows: 10 / 15, 20 / custom */
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-12);
+}
+
+.tip-button {
+  min-height: 48px;
+  font: inherit;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+  background-color: var(--color-surface-muted);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.tip-button:hover {
+  color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+}
+
+/* SELECTED: your JS sets aria-pressed="true" on one button */
+.tip-button[aria-pressed="true"] {
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
+}
+
+.tip-button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* the custom box reads like the buttons: centered */
+.tip-custom {
+  text-align: center;
+}
+
+/* RESULT: fixed 360px column, amounts at the top, Reset at the bottom */
+.result {
+  flex-shrink: 0;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-48);
+  padding: var(--space-32);
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.result-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.result-title,
+.result-per {
+  display: block;
+}
+
+.result-title {
+  font-weight: var(--weight-semibold);
+}
+
+.result-per {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  opacity: 0.72;
+}
+
+/* big numbers; tabular digits so they don't jiggle as they change */
+.result-amount {
+  min-width: 0;
+  font-size: var(--text-heading-32);
+  line-height: var(--leading-heading-32);
+  letter-spacing: var(--tracking-heading-32);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere; /* a huge bill wraps instead of overflowing */
+  text-align: right;
+}
+
+.button-reset {
+  width: 100%;
+  padding: 14px var(--space-24);
+  font: inherit;
+  font-weight: var(--weight-semibold);
+  color: var(--color-accent);
+  background-color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.button-reset:hover {
+  background-color: var(--color-accent-soft);
+}
+
+.button-reset:focus-visible {
+  outline: 2px solid var(--color-on-accent);
+  outline-offset: var(--focus-offset);
+}
+
+/* DISABLED: the HTML starts with disabled; your JS removes it */
+.button-reset:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: var(--color-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tip-button {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding-top: var(--space-48);
+    padding-bottom: var(--space-48);
+    gap: var(--space-32);
+  }
+
+  .page-header h1 {
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+    letter-spacing: var(--tracking-heading-32);
+  }
+
+  .intro {
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+  }
+
+  /* stack: form on top, result underneath */
+  .calculator {
+    flex-direction: column;
+    padding: var(--space-24);
+  }
+
+  /* in a column, flex: 1 1 0 would squash the form's height */
+  .calculator-form {
+    flex: none;
+  }
+
+  .result {
+    width: 100%;
+    padding: var(--space-24);
+    gap: var(--space-24);
+  }
+}

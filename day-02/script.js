@@ -6,7 +6,6 @@ const plans = {
     description: "For a single portfolio or personal site.",
     monthly: 12,
     yearly: 120,
-    featured: false,
     features: [
       "1 website",
       "Up to 5 pages",
@@ -19,7 +18,6 @@ const plans = {
     description: "For freelancers running a few client sites.",
     monthly: 24,
     yearly: 240,
-    featured: true,
     features: [
       "5 websites",
       "Unlimited pages",
@@ -32,7 +30,6 @@ const plans = {
     description: "For teams managing many client projects.",
     monthly: 48,
     yearly: 480,
-    featured: false,
     features: [
       "Unlimited websites",
       "Client workspaces",
@@ -41,8 +38,9 @@ const plans = {
     ],
   },
 };
-
+const planButtons = document.querySelectorAll(".button");
 let isYearly = false;
+let planFeatured = "studio";
 
 const billingToggle = document.querySelector(".billing-toggle");
 const cards = document.querySelectorAll(".card");
@@ -75,11 +73,11 @@ const render = () => {
       ? "Billed yearly"
       : "Billed monthly";
 
-    // featured look: toggle(name, true) adds the class, false removes it
-    card.classList.toggle("is-featured", data.featured);
-    badge.classList.toggle("hidden", !data.featured);
-    button.classList.toggle("is-primary", data.featured);
-    button.classList.toggle("is-secondary", !data.featured);
+    const isFeatured = card.dataset.plan === planFeatured;
+    card.classList.toggle("is-featured", isFeatured);
+    badge.classList.toggle("hidden", !isFeatured);
+    button.classList.toggle("is-primary", isFeatured);
+    button.classList.toggle("is-secondary", !isFeatured);
   });
 
   planType.forEach((type, index) => {
@@ -90,8 +88,15 @@ const render = () => {
 
 billingToggle.addEventListener("change", () => {
   isYearly = billingToggle.checked;
-
   render();
+});
+
+planButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const dataPlan = button.closest("article").dataset.plan;
+    planFeatured = dataPlan;
+    render();
+  });
 });
 
 render();

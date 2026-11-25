@@ -20,6 +20,7 @@ One small project a day, hand-coded in HTML, CSS and JavaScript, then TypeScript
 | 0 | About-me page | Time-based greeting, Clipboard API, `setTimeout`, dynamic footer year | [day-00](day-00) |
 | 1 | Profile card with Follow button | Flexbox, design tokens, state + `render()` pattern, `classList.toggle`, `aria-pressed` | [day-01](day-01) |
 | 2 | Responsive pricing page | CSS grid, media queries, styled switch, cards rendered from a JS object, monthly/yearly toggle | [day-02](day-02) |
+| 3 | Accessible contact form | `FormData`, custom validation messages, `aria-invalid` + `aria-describedby`, `validity`, live character counter, focus on first error | [day-03](day-03) |
 
 ## How each project is built
 

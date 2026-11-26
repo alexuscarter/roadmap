@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Day 05 · Expense list</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <p class="eyebrow">Expense list</p>
+        <h1>Where the money went</h1>
+        <p class="intro">
+          Add what you spent, sort it into a category and see the totals add up.
+        </p>
+      </header>
+
+      <div class="layout">
+        <div class="side">
+          <!-- ADD FORM: listen for "submit" on the form, not "click" on the button.
+               required / min do the basic checks before submit fires. -->
+          <form class="card form" id="expense-form">
+            <h2 class="card-title">Add an expense</h2>
+
+            <div class="field">
+              <label class="field-label" for="description">Description</label>
+              <input
+                class="field-control"
+                id="description"
+                name="description"
+                type="text"
+                placeholder="e.g. Groceries"
+                autocomplete="off"
+                required
+              />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label" for="amount">Amount</label>
+                <div class="input-wrap">
+                  <span class="input-prefix" aria-hidden="true">$</span>
+                  <input
+                    class="field-control"
+                    id="amount"
+                    name="amount"
+                    type="number"
+                    inputmode="decimal"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="0.00"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="category">Category</label>
+                <!-- each option's value is the category name your JS reads -->
+                <select
+                  class="field-control field-select"
+                  id="category"
+                  name="category"
+                >
+                  <option value="Food">Food</option>
+                  <option value="Transport">Transport</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Fun">Fun</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="button-primary" type="submit">Add expense</button>
+          </form>
+
+          <!-- TOTALS: every number here comes from your data with reduce -->
+          <section class="card totals" aria-labelledby="totals-title">
+            <h2 class="totals-label" id="totals-title">Total spent</h2>
+            <p class="totals-amount" id="overall-total">$0.00</p>
+
+            <!-- one row per category. Find a row's amount with its data-category:
+                 document.querySelector(`[data-category="Food"]`) -->
+            <dl class="totals-rows">
+              <div class="totals-row">
+                <dt>Food</dt>
+                <dd data-category="Food">$0.00</dd>
+              </div>
+              <div class="totals-row">
+                <dt>Transport</dt>
+                <dd data-category="Transport">$0.00</dd>
+              </div>
+              <div class="totals-row">
+                <dt>Bills</dt>
+                <dd data-category="Bills">$0.00</dd>
+              </div>
+              <div class="totals-row">
+                <dt>Fun</dt>
+                <dd data-category="Fun">$0.00</dd>
+              </div>
+              <div class="totals-row">
+                <dt>Other</dt>
+                <dd data-category="Other">$0.00</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="card list-card" aria-labelledby="list-title">
+          <div class="list-head">
+            <h2 class="card-title" id="list-title">Expenses</h2>
+            <p class="item-count" id="item-count">0 items</p>
+          </div>
+
+          <!-- FILTERS: same pattern as the Day 4 tip buttons.
+               Each chip carries its category in data-filter.
+               aria-pressed="true" marks the selected one (and styles it). -->
+          <div class="filters" role="group" aria-label="Filter by category">
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter="All"
+              aria-pressed="true"
+            >
+              All
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter="Food"
+              aria-pressed="false"
+            >
+              Food
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter="Transport"
+              aria-pressed="false"
+            >
+              Transport
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter="Bills"
+              aria-pressed="false"
+            >
+              Bills
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter="Fun"
+              aria-pressed="false"
+            >
+              Fun
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter="Other"
+              aria-pressed="false"
+            >
+              Other
+            </button>
+          </div>
+
+          <ul class="expense-list" id="expense-list">
+            <!-- LIST: your JS builds the <li>s with map + template strings,
+               then sets the list's innerHTML. One row looks like this:
+
+               <li class="expense">
+                 <div class="expense-text">
+                   <p class="expense-name">Groceries</p>
+                   <span class="expense-tag">Food</span>
+                 </div>
+                 <p class="expense-amount">$64.20</p>
+               </li>
+          --></ul>
+
+          <!-- EMPTY: show it when the shown list has no items
+               (set its hidden property to false), hide it otherwise.
+               Change the text for a filter: "No Fun expenses yet" -->
+          <div class="empty" id="empty-state" hidden>
+            <p class="empty-title" id="empty-title">No expenses yet</p>
+            <p class="empty-text">Add your first one with the form.</p>
+          </div>
+
+          <div class="list-foot">
+            <p id="shown-label">Total shown</p>
+            <p class="shown-total" id="shown-total">$0.00</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
